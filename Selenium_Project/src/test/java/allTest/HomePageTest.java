@@ -23,5 +23,7 @@ public class HomePageTest {
     @Test
     public void test1(){
         System.out.println("This is a test");
+        System.out.printf("Testing git");
+        System.out.println("Making another");
     }
 }
