@@ -2,28 +2,23 @@ package allTest;
 
 import browser.Browser;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.BeforeMethod;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import pages.HomePage;
 
-import java.time.Duration;
+@Listeners(value = TestListener.class) // this is the listener for the screenShot.
 
-public class HomePageTest {
-
-    WebDriver driver;
-
-    @BeforeMethod
-    public void setUp(){
-        Browser.setDriver();
-        driver = Browser.getDriver();
-        driver.navigate().to(Browser.getPropretyValue("url"));
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-    }
+public class HomePageTest extends BaseTest{ // extend that class to add BaseTest
+    WebDriver driver = Browser.getDriver();
 
     @Test
     public void test1(){
-        System.out.println("This is a test");
-        
-        System.out.println("Making another");
+        //System.out.println("This is a test");
+        //PageFactory.initElements(driver, HomePage.class) //Moved to BaseTest to make it nice
+        startHomePage()
+                .registerUser();
+        Assert.assertEquals(4,5);
     }
 }
